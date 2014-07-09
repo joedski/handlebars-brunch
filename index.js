@@ -42,7 +42,7 @@ HandlebarsCompiler.prototype.compile = function(data, path, callback) {
   var error, key, ns, result, source;
   try {
     source = "Handlebars.template(" + (handlebars.precompile(data)) + ")";
-    result = this.namespace ? (ns = this.namespace, key = path.replace(this.pathReplace, '').replace(/\..+?$/, ''), "if (typeof " + ns + " === 'undefined'){ " + ns + " = {} }; " + ns + "['" + key + "'] = " + source) : umd(source);
+    result = this.namespace ? (ns = this.namespace, key = path.replace(this.pathReplace, '').replace(/\..+?$/, '').replace(/\\/g, '/'), "if (typeof " + ns + " === 'undefined'){ " + ns + " = {} }; " + ns + "['" + key + "'] = " + source) : umd(source);
   } catch (_error) {
     error = _error;
   }
